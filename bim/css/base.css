@@ -1,0 +1,3 @@
+.fl{float: left;}
+.fr{float: right;}
+.clear:after{content: "";clear: both;display: block;}

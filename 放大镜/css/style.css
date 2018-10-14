@@ -1,0 +1,46 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* 框架 */
+.wrap {
+    position: relative;
+    margin: 100px;
+}
+
+/* 小图框 */
+.min {
+    position: relative;
+    width: 350px;
+}
+/* 小图图片 */
+.min img {
+    width: 100%;
+}
+/* 遮罩 */
+.min_wrap {
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: move;
+    background-color: rgba(255,255,0,.4);
+    display: none;
+}
+
+/* 大图框 */
+.max_wrap {
+    border: 1px solid #000;
+    position: absolute;
+    top: 1px;
+    left: 370px;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    display: none;
+}
+.max_wrap img {
+    position: absolute;
+    width: 800px;
+}

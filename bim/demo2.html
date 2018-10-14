@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.wrap{
+		border:5px solid black;
+		width: 300px;
+		position: relative;
+	}
+	.wrap img{width: 100%;}
+	.wrap img:nth-child(2){
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+		/*opacity: 0;*/
+		/*transition: 1s;*/
+	}
+	/*.wrap:hover img:nth-child(2) {opacity: 1}*/
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<img src="img/example33.jpg" alt="">
+		<img src="img/example34.jpg" alt="">
+	</div>
+	<div class="wrap">
+		<img src="img/example33.jpg" alt="">
+		<img src="img/example34.jpg" alt="">
+	</div>
+	<div class="wrap">
+		<img src="img/example33.jpg" alt="">
+		<img src="img/example34.jpg" alt="">
+	</div>
+	<div class="wrap">
+		<img src="img/example33.jpg" alt="">
+		<img src="img/example34.jpg" alt="">
+	</div>
+	<div class="wrap">
+		<img src="img/example33.jpg" alt="">
+		<img src="img/example34.jpg" alt="">
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+$(".wrap").hover(function () {
+	$(this).children().eq(1).stop().fadeIn();
+},function(){
+	$(this).children().eq(1).stop().fadeOut();
+})
+</script>
+</html>

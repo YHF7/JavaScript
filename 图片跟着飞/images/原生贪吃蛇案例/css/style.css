@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+/* 蛇身体的长度和分数 */
+.df,
+.ssc {
+    position: absolute;
+    top: 0px;
+    left: 400px;
+}
+.ssc {
+    left: 250px;
+}
+/* 蛇地图的样式 */
+.wrap {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background-color: #ccc;
+}
+/* 游戏说明 */
+.yx {
+    position: absolute;
+    margin: 40px;
+    font-size: 20px;
+    color: pink;
+}

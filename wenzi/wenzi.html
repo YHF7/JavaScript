@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>文字游戏</title>
+	<link rel="stylesheet" href="css/home.css"><!-- css设置 -->
+	<link rel="stylesheet" href="css/animate.min.css">
+	<script type="text/javascript">
+		//判断要在微信打开跳转获取数据
+		if (!localStorage.openid) {
+			location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc37ef0f2c502d694&redirect_uri=http%3A%2F%2F192.168.1.103%2Fwenzi%2Fphp%2Fgetuser.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+		}
+		// if (!localStorage.openid) {
+		// 	location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc37ef0f2c502d694&redirect_uri=http%3A%2F%2F192.168.1.111%2Fwenzi%2Fphp%2Fgetuser.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+		// }
+	</script>
+	</head>
+<body>
+<div id="wrap">
+	<!-- 头部-start -->
+	<div id="dao">剩余时间:20</div>
+	<div id="wan">完成：0</div>
+	<div id="show">红</div>
+	<input id="row" type="button" value="排行榜">
+	<input id="start" type="button" value="开始">
+	<input id="retry" type="button" value="重试">
+	<!-- 头部-end -->
+
+	<!-- 提交按钮-start -->
+	<div class="p1_mask" id="user_data">
+		<img class="close" src="img/close.png" alt="" />
+		<form class="userData_wrap">
+			<input class="userData_name" type="text" placeholder="姓名" />
+			<input class="tel" type="text" placeholder="电话" />
+			<input class="sub" type="button" value="&nbsp;" />
+		</form>
+	</div>
+	<!-- 提交按钮-end -->
+
+	<!-- 排行榜-start -->
+	<div class="p1_mask" id="ranking">
+		<img class="close" src="img/close.png" alt="" />
+		<div class="ranking_wrap">
+			<ul>
+			</ul>
+		</div>
+	</div>
+	<!-- 排行榜-end -->
+
+	<!-- 内容-start -->
+	<div id="menu">根据上面的字的颜色从下面选择正确的字，选择正确自动开始</div>
+	<!-- 内容-end -->
+
+	<!-- 底部-start -->
+	<ul id="ul1">
+		<li>绿</li>
+		<li>蓝</li>
+		<li>黑</li>
+		<li>黄</li>
+		<li>红</li>
+	</ul>
+	<!-- 底部-end -->
+
+	<!-- 结束-start -->
+	<div id="p3">
+		<div id="result">
+			<img class="p3_acquire" src="img/p3_acquire.png" alt="" />
+			<div id="result_num">￥88</div>
+			<div id="result_txt">没办法！你已经强到没有对手了</div>
+			<div class="result_rank">我的辉煌战绩:￥<span id="highScore">999</span>  当前排名：<span id="result_rank">62</span>位</div>
+			<img class="p3_again" src="img/p3_again.png" alt="" />
+			<img class="p3_share_btn" src="img/p3_share_btn.png" alt="" />
+			<img class="p1_btns_wrap" src="img/p1_btns_wrap.png"/>
+			<img src="img/ranking.png" class="ranking"/>
+			<img src="img/activity_rule.png" class="activity_rule"/>
+			<img src="img/prize.png" class="prize"/>
+			<img src="img/shiyong.png" class="shiyong"/>
+		</div>
+		<div class="p1_mask" id="share">
+			<img class="p3_share" src="img/p3_share.png"/>
+		</div>
+	</div>
+
+	<!-- 活动规则 -->
+	<div class="p1_mask" id="activity_rule">
+		<img class="close" src="img/close.png" alt="" />
+		<div class="float_wrap">
+			<h2>活动规则</h2>
+			<p>1、每人有多次游戏机会，但成绩只能提交一次，且提交之后不能更改！<br />
+			   2、提交成绩时要提供姓名及手机号码作为兑奖凭证，因用户本人未在规定时间内提供正确的手机号码造成的奖品损失，由用户个人承担。<br />
+			   3、活动时间为2018年5月11日-5月19日24:00，活动结束后将在“yhf”微信公布中奖名单。<br />
+			   4、获奖规则：系统将根据大家提交的成绩，按照由多到少的规则进行排行，排名第1的网友将获得一等奖，排名第2-第21位的网友将分获二等奖，以此类推。<br />
+			   5、奖品的发放：活动结束后，将由工作人员与您取得联系，并将相应的卡券编号发送到您提供的手机号码上。</p>
+		</div>
+	</div>
+	
+	<!-- 活动奖品 -->
+	<div class="p1_mask" id="prize">
+		<img class="close" src="img/close.png" alt="" />
+		<div class="float_wrap">
+			<h2>活动奖品</h2>
+			<p>一等奖1人：价值1488元7号楼1晚豪华标间免费房券1张，并可享康体项目3折优惠；</p>
+			<p>二等奖20人：100元订房代金券每人1张，并可享康体项目4折优惠；</p>
+			<p>三等奖50人：50元订房代金券每人1张，并可享康体项目5折优惠。</p>
+			<p>奖品的有效期：2016年5月20日至6月15日（周五、周六及法定节假日不可用）</p>
+		</div>
+	</div>
+
+	<!-- 奖券使用说明 -->
+	<div class="p1_mask" id="shiyong">
+		<img class="close" src="img/close.png" alt="" />
+		<div class="float_wrap">
+			<h2>奖券使用说明</h2>
+			<p>1、奖品的使用：请务必至少提前一周致电010-81027788或81027799进行预约，并于入住时向前台服务人员出示您手机上收到的卡券编号即可使用（需同时验证获奖人姓名与手机号码）。<br />
+			   2、代金券仅适用于线下门市价入住客房消费使用，不适用于通过携程或微信等其他线上渠道预定使用。<br />
+			   3、免费房安排的房间将视当时酒店排房情况而定，如您所预约的时段预订已满，将与您协商调整入住时间。<br />
+			   4、免费房券及代金券不得用于除订房外其他产品消费，不得与酒店其他优惠折扣或礼券同时使用，且不予退换、兑换现金或找赎。<br />
+			   5、对于恶意刷奖者和作弊者，主办方有权取消其兑奖资格。</p>
+		</div>
+	</div>
+	<!-- 结束-end -->
+
+</div>
+
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script><!-- 引入微信js -->
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script><!-- jq插件 -->
+<script type="application/javascript" src="js/fastclick.js"></script><!-- 手指事件 -->
+<script type="application/javascript" src="js/start.js"></script><!-- js设置 -->
+<script type="text/javascript">
+	//用ajax调用PHP文件使用微信调用
+	$.ajax({
+		type:"post",
+		url:"jssdk/wx.php",
+		data:{url:location.href},
+		dataType:"json",
+		success:function (rs) {
+			// alert(rs);
+			wx.config({
+			  debug: false,
+			  appId: rs.appId,
+			  timestamp: rs.timestamp,
+			  nonceStr: rs.nonceStr,
+			  signature: rs.signature,
+			  jsApiList: [
+			    // 所有要调用的 API 都要加到这个列表中
+			    "onMenuShareAppMessage"//分享到微信朋友的接口
+			  ]
+			});
+			wx.ready(function () {
+				    wx.onMenuShareAppMessage({
+				    title: '文字游戏', // 分享标题
+				    desc: '快来挑战吧', // 分享描述
+				    link: 'http://192.168.1.103/wenzi/wenzi.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				    imgUrl: 'http://thirdwx.qlogo.cn/mmopen/YndsGEUQzhXZhwMdQbU90YubZyiaFheP3T8azlwzp87KjkCOjvwiakfNXnWOw6bL1kExeHKtF83HWFY3XaOWzynLaa58dic85ibS/132', // 分享图标
+				    type: '', // 分享类型,music、video或link，不填默认为link
+				    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				    success: function () {
+				        // 用户确认分享后执行的回调函数
+				        $("#share").css("display","none");
+				    },
+				    cancel: function () {
+				        // 用户取消分享后执行的回调函数
+				        $("#share").css("display","none");
+				    }
+				});
+			});
+		},
+		error:function () {
+
+		}
+	})
+
+</script>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .wrap {
+            width: 500px;
+            height: 200px;
+            border: 5px solid black;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .inner {
+            width: 600%;
+            position: relative;
+        }
+
+        img {
+            float: left;
+        }
+
+        .wrap:hover .left,
+        .wrap:hover .right {
+            opacity: 1;
+        }
+
+        .left,
+        .right {
+            position: absolute;
+            top: 50%;
+            color: pink;
+            font-size: 30px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .an {
+            position: absolute;
+            top: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #000;
+            float: left;
+            margin-left: 5px;
+        }
+
+        .sc {
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="inner">
+            <img src="images/1.jpg" alt="">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt="">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt="">
+            <img src="images/1.jpg" alt="">
+        </div>
+        <div class="left">
+            < </div> <div class="right">
+                >
+        </div>
+        <div class="an">
+            <span class="sc"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</body>
+
+<script>
+    // 获取左按钮
+    let l = document.querySelector(".left");
+    // 获取右按钮
+    let r = document.querySelector(".right");
+    // 图片父级
+    let inner = document.querySelector(".inner");
+    // 获取span按钮
+    let span = document.querySelectorAll("span");
+    // 获取框架
+    let wrap = document.querySelector(".wrap");
+    // 记录第几个
+    let index = 0;
+
+    // 右点击事件
+    r.onclick = () => {
+        index++;
+        if (index >= 6) {
+            index = 1;
+            inner.style.left = 0 + "px";
+        }
+        chang()
+    }
+
+    // 左点击事件
+    l.onclick = () => {
+        index--;
+        if (index < 0) {
+            inner.style.left = -2500 + "px";
+            index = 4;
+        }
+        chang()
+    }
+
+    // 循环给sapn按钮添加点击事件
+    for (let i = 0; i < span.length; i++) {
+        span[i].num = i;
+        span[i].onclick = () => {
+            index = span[i].num;
+            chang();
+        }
+    }
+
+    // 每3秒自动播放
+    let zd = setInterval(r.onclick, 3000);
+
+    // 鼠标进入停止播放事件
+    wrap.onmouseover = () => {
+        clearInterval(zd);
+    }
+
+    // 鼠标离开继续开启鼠标点击事件
+    wrap.onmouseout = () => {
+        zd = setInterval(r.onclick, 3000);
+    }
+
+    // 给按钮添加遍历和调用移动函数
+    chang = () => {
+        for (let i = 0; i < span.length; i++) {
+            span[i].className = "";
+        }
+        let n = index == 5 ? 0 : index;
+        span[n].className = "sc";
+        fn(inner, -index * 500);
+
+    }
+
+    // 封装点击事件移动函数
+    //设置任意的一个元素,移动到指定的目标位置
+    fn = (element, target) => {
+        clearInterval(element.timeId);
+        //定时器的id值存储到对象的一个属性中
+        element.timeId = setInterval(function () {
+            //获取元素的当前的位置,数字类型
+            var current = element.offsetLeft;
+            //每次移动的距离
+            var step = 20;
+            step = current < target ? step : -step; //当前移动到位置 
+            current += step;
+            if (Math.abs(current - target) > Math.abs(step)) {
+                element.style.left = current + "px";
+            } else {
+                //清理定时器
+                clearInterval(element.timeId);
+                //直接到达目标
+                element.style.left = target + "px";
+            }
+        }, 20);
+    }
+</script>
+
+</html>

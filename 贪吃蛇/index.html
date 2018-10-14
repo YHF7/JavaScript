@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0
+		}
+
+		.wrap {
+			width: 100px;
+			height: 100px;
+			border: 5px solid black;
+			margin: 50px auto;
+			background: url(img/bg.png) 1px 1px;
+			background-size: 40px auto;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.wrap .snake {
+			width: 20px;
+			height: 20px;
+			background: blue;
+			position: absolute;
+			z-index: 2;
+		}
+
+		.food {
+			width: 20px;
+			height: 20px;
+			background: red;
+			position: absolute;
+			left: 60px;
+			top: 100px;
+			z-index: 1;
+		}
+
+		.wrap div {
+			width: 20px;
+			height: 20px;
+			background: #ccc;
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="snake"></div>
+		<div class="d2"></div>
+		<p class="food"></p>
+	</div>
+</body>
+<script type="text/javascript">
+	var wrap = document.querySelector(".wrap"); //游戏框
+	var snake = document.querySelector(".snake"); //蛇
+	var food = document.querySelector(".food"); //食物
+	var d2 = document.querySelector(".d2");
+	var aSnake = [snake, d2]; //保存蛇和蛇身体的数组
+
+	var box = 20; //每个格子的大小
+	var x = 0; //蛇移动的位置x轴
+	var y = 0; //蛇移动的位置y轴
+	var sdx = box; //每次移动的x轴距离
+	var sdy = 0; //每次移动的y轴距离
+	var next = true; //记录是否可以再点击方向键
+	var timer = setInterval(function () {
+		x += sdx; //控制蛇左右移动
+		y += sdy; //控制蛇上下移动
+
+		//判断超出游戏框时返回另一头，穿墙效果
+		if (x < 0) {
+			x = wrap.clientWidth - box;
+		} else if (x > wrap.clientWidth - box) {
+			x = 0;
+		}
+		if (y < 0) {
+			y = wrap.clientHeight - box
+		} else if (y > wrap.clientHeight - box) {
+			y = 0;
+		}
+
+		//蛇身体跟着蛇头移动
+		// [snake,d1,d2,d3]
+		aSnake[aSnake.length - 1].style.left = snake.offsetLeft + "px";
+		aSnake[aSnake.length - 1].style.top = snake.offsetTop + "px";
+		//把最后一个元素放到第二个的位置
+		aSnake.splice(1, 0, aSnake.pop());
+
+		snake.style.left = x + "px"; //设置蛇的x轴位置
+		snake.style.top = y + "px"; //设置蛇的y轴位置
+
+		next = true; //记录走完一步了
+
+		check() //每走一步检测
+	}, 200)
+
+	//检测函数
+	function check() {
+		//判断是否吃到食物、如果蛇位置和食物的位置一样就是吃到了
+		if (snake.offsetLeft == food.offsetLeft && snake.offsetTop == food.offsetTop) {
+			//吃到食物后蛇长一个身体
+			createDiv();
+			//再出现另一个食物再其他地方随机出现
+			foodFn();
+		}
+
+		for (var i = 4; i < aSnake.length; i++) {
+			if (aSnake[i].offsetLeft == snake.offsetLeft && aSnake[i].offsetTop == snake.offsetTop) {
+				gameover();
+			}
+		}
+	}
+
+	function gameover() {
+		console.log("游戏结束")
+		clearInterval(timer);
+	}
+	foodFn();
+	//控制食物随机位置的函数
+	function foodFn() {
+		var numx = wrap.clientWidth / box; //计算一行多少格
+		var numy = wrap.clientHeight / box; //计算多少行
+		var x = parseInt(Math.random() * numx) * box; //随机哪一列
+		var y = parseInt(Math.random() * numy) * box; //随机哪一行
+		for (var i = 0; i < aSnake.length; i++) {
+			//判断如果食物在蛇身上退出循环
+			if (aSnake[i].offsetTop == y && aSnake[i].offsetLeft == x) {
+				break;
+			}
+		}
+		if (i == aSnake.length) { //判断不位置不在蛇身上
+			food.style.left = x + "px"; //设置食物的x轴位置
+			food.style.top = y + "px"; //设置食物的y轴位置
+		} else {
+			foodFn()
+		}
+
+	}
+	// document.onclick = function () {
+	// 	createDiv()
+	// }
+	//创建蛇身体
+	function createDiv() {
+		var div = document.createElement("div"); //创建div
+		div.style.left = -box + "px";
+		wrap.appendChild(div); //把DIV添加到wrap里面
+		aSnake.push(div) //把div添加到蛇数组里面
+	}
+
+
+	// 鼠标拖动控制方向
+	var bol = 0;
+	var dx = 0; //鼠标点击时的位置
+	var dy = 0; //鼠标点击时的位置
+	var sx = 0; //鼠标当前位置
+	var sy = 0; //鼠标当前位置
+	document.onmousedown = function (e) {
+		bol = true;
+		dx = e.clientX;
+		dy = e.clientY;
+		e.preventDefault();
+	}
+	document.onmousemove = function (e) {
+		sx = e.clientX;
+		sy = e.clientY;
+	}
+	document.onmouseup = function () {
+		console.log(sx - dx)
+		if (Math.abs(sx - dx) > Math.abs(sy - dy)) {
+			if (sx - dx > 0) {
+				keyfn(39)
+			} else {
+				keyfn(37)
+			}
+		} else {
+			if (sy - dy > 0) {
+				keyfn(40)
+			} else {
+				keyfn(38)
+			}
+		}
+	}
+
+
+	//键盘控制蛇移动方向
+	document.onkeydown = function (e) {
+		keyfn(e.keyCode)
+	}
+
+	function keyfn(key) {
+		switch (key) {
+			case 37: //左  sdy等于零就上正在上下移动
+				if (sdy != 0 && next) {
+					sdx = -box;
+					sdy = 0;
+				}
+				break;
+			case 39: //右
+				if (sdy != 0 && next) {
+					sdx = box;
+					sdy = 0;
+				}
+				break;
+			case 38: //上	
+				if (sdx != 0 && next) {
+					sdy = -box;
+					sdx = 0;
+				}
+				break;
+			case 40: //下
+				if (sdx != 0 && next) {
+					sdy = box;
+					sdx = 0;
+				}
+				break;
+		}
+		next = false; //记录点击方向键后，走了(true)或没走(false)
+	}
+</script>
+
+</html>

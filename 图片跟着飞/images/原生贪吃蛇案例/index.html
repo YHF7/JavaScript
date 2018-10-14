@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+    <!-- 样式设置 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <input type="button" value="开始游戏">
+    <input type="button" value="停止游戏">
+    <input type="button" value="结束游戏">
+    <div class="ssc">
+        蛇身的长度: 0
+    </div>
+    <div class="df">
+        得分: 0
+    </div>
+    <!-- 蛇地图 -->
+    <div class="wrap">
+
+    </div>
+    <div class="yx">
+        <h3>游戏说明：</h3>
+        玩法：上下左右键控制，w上s下a左d右控制，鼠标上下左右拖拽<br>
+        点击开始游戏，开启游戏<br>
+        点击停止游戏，暂停游戏，点击开始游戏恢复继续玩<br>
+        点击结束游戏，停止游戏要点击开启游戏重新开始<br>
+    </div>
+</body>
+<!-- 初始化食物 -->
+<script src="js/Food.js"></script>
+<!-- 初始化蛇 -->
+<script src="js/Snake.js"></script>
+<!-- 初始化游戏启动 -->
+<script src="js/Game.js"></script>
+<!-- 调用启动 -->
+<script src="js/index.js"></script>
+
+</html>

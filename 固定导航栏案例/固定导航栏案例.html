@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    .main {
+      margin: 0 auto;
+      width: 1000px;
+      margin-top: 10px;
+
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top" id="topPart">
+    <img src="images/top.png" alt="" />
+  </div>
+  <div class="nav" id="navBar">
+    <img src="images/nav.png" alt="" />
+  </div>
+  <div class="main" id="mainPart">
+    <img src="images/main.png" alt="" />
+  </div>
+</body>
+
+<script>
+  let topPart = document.querySelector("#topPart");
+  let navBar = document.querySelector("#navBar");
+
+  //获取页面向上或者向左卷曲出去的距离的值
+  getScroll = () => {
+    return {
+      left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+      top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+    };
+  }
+
+  // 滚动事件
+  window.onscroll = () => {
+    //向上卷曲出去的距离和最上面的div的高度对比
+    if (getScroll().top >= topPart.offsetHeight) {
+      //设置第二个div的类样式
+      navBar.className = "nav fixed"
+      //设置第三个div的marginTop的值
+      topPart.style.marginTop = navBar.offsetHeight + "px";
+    } else {
+      navBar.className = "nav"
+      topPart.style.marginTop = 10 + "px";
+    }
+  }
+</script>
+
+</html>

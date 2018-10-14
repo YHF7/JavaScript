@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>Document</title>
+	<style type="text/css">
+	*{margin:0;padding: 0}
+	body{background: #f06060;text-align: center;}
+	.time,.score,.button{font-size: 30px;}
+	.wrap{
+		width: 500px;
+		height: 500px;
+		margin: auto;
+		text-align: left;
+		border-radius: 20px;
+		background: #ccc;
+		font-size: 0px;
+	}
+	.wrap img{
+		width: 100%;
+		background: yellow;
+		vertical-align:  middle;
+		border-radius: 20px;
+		float: left;
+	}
+	</style>
+</head>
+<body>
+	<div class="time">
+		剩余时间：20.00秒
+	</div>
+	<div class="score">
+		分数：0
+	</div>
+	<div class="start">
+		<button>开始</button>
+	</div>
+	<div class="wrap">
+		<img src="img/2.png" alt="">
+	</div>
+</body>
+<script type="text/javascript">
+var oTime=document.querySelector(".time");
+var oScore=document.querySelector(".score");
+var oBtn=document.querySelector("button");
+var oWrap=document.querySelector(".wrap");
+
+var index=1;//记录关数
+var start_bol=false;//记录开始和结束
+var score=0;//记录分数
+var arrColor=["red","blue","yellow","pink","green","orange"]
+var cIndxex=0;//记录颜色
+
+//点击开始按钮
+oBtn.onclick=function() {
+	start();//执行开始函数
+}
+
+//开始函数
+function start(){
+	if(start_bol){return;}
+	start_bol=true;
+	index=1;
+	score=0;
+	oScore.innerText="分数："+score;
+	timeFn(20);//执行倒计时函数
+	createImg();//执行创建图片函数
+}
+//随即改变一个图片为房祖明
+function change(){
+	var rnd=Math.floor(Math.random()*oWrap.children.length);
+	oWrap.children[rnd].src="img/2.png";
+	oWrap.children[rnd].onclick=function(){
+		if (!start_bol) {return;}//判断结束不执行
+		score+=10;
+		oScore.innerText="分数："+score;
+		createImg();//执行创建函数
+	}
+}
+
+//创建图片函数
+function createImg(){
+	index++;
+	if (index>8) {index=8;}
+	oWrap.innerHTML="";//清空所有图片内容
+	cIndxex++;//下一个颜色颜色
+		if(cIndxex>arrColor.length-1){
+			cIndxex=0;
+		}
+	for (var i = 0; i < index*index; i++) {
+		//创建图片
+		var img=document.createElement("img");
+		var w=(500-(index+1)*5)/index;
+		// var rnd=parseInt(Math.random()*arrColor.length)
+		img.style.background=arrColor[cIndxex];
+		img.style.width=w+"px";
+		img.style.marginLeft="5px";
+		img.style.marginTop="5px";
+		img.src="img/1.png";
+		oWrap.appendChild(img);//把图片添加到wrap框里
+	}
+	change();//执行随机改变图片为房祖名
+}
+
+//倒计时函数
+function timeFn(n){
+	var timer=setInterval(function(){
+		n-=0.02;
+		if(n<0){
+			n=0;
+			clearInterval(timer);
+			start_bol=false;
+		}
+		oTime.innerText="剩余时间："+n.toFixed(2)+"秒"
+	},20)
+}
+
+</script>
+</html>

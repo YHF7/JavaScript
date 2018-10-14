@@ -1,0 +1,72 @@
+/* body/框-----------------------start */
+*{margin:0;padding: 0;font-family: "微软雅黑";}
+body,html{height: 100%;}
+#wrap{width: 375px;margin: 0 auto;position: relative;height: 100%;min-height: 100%;max-height: 100%;border: 1px solid #ccc;}
+/* body/框-----------------------end*/
+
+/* 头部-----------------------start */
+#dao{position: absolute;left: 20px;top: 20px;font-size: 2em;}
+#wan{position: absolute;top: 20px;font-size: 2em;right: 20px;}
+#show{font-size: 10em;top: 90px;left: 120px;position: absolute;}
+#row{position: absolute;left: 60px;top: 70px;font-size: 1em;}
+#start{position: absolute;left: 160px;top: 70px;font-size: 1em;}
+#retry{position: absolute;left: 240px;top: 70px;font-size: 1em;}
+/* 头部-----------------------end*/
+
+/* 内容-----------------------start */
+#menu{padding: 40px;font-size: 2em;top: 250px;position: absolute;}
+/* 内容-----------------------end*/
+
+/* 底部-----------------------start */
+#ul1{position: absolute;left: 0;bottom: 0;list-style: none;}
+#ul1 li{float: left;font-size: 4.5em;}
+/* 底部-----------------------end
+
+/* 提交-----------------------start */
+#user_data{display: none;}
+.p1_mask{position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.7);z-index: 2;}
+.close{position: absolute;right: 13.59375%;top: 13.845%;width: 6.6875%;}
+.userData_wrap{position: absolute;top: 19.63%;left: 13%;width: 74%;height: 44%;background: url(../img/p1_from.png);background-size: 100% 100%;}
+.userData_name{position: absolute;left: 12.711%;top: 33.5%;width: 72%;border: 2px solid #e33145;height: 14%;border-radius: 10px;padding-left: 2%;font-size: 16px;color: black;background: #f2bb00;outline: none;}
+.tel{position: absolute;left: 12.711%;top: 50.5%;width: 72%;border: 2px solid #e33145;height: 14%;border-radius: 10px;padding-left: 2%;font-size: 16px;color: black;background: #f2bb00;outline: none;}
+.sub{position: absolute;top: 69%;width: 54.85%;height: 17.2%;border: 0;outline: none;background: url(../img/p1_sub.png);background-size: 100% 100%;left: 23.5%;}
+/* 提交-----------------------end*/
+
+/* 排行榜-----------------------start */
+#ranking{display: none;z-index: 3;}
+.ranking_wrap{position: absolute;top: 19.63%;left: 13.28125%;width: 57.99375%;height: 40.387%;background: url(../img/ranking_bg.png);background-size: 100% 100%;padding: 14.8% 7.8% 8.688%;}
+.rank{width: 21px;height: 44px;text-align: center;font-size: 14px;}
+.title_img{width: 44px;height: 44px;border-radius: 22px;}
+.ranking_wrap ul{list-style: none;overflow: scroll;height: 100%;}
+.ranking_wrap li{border-bottom: 1px dashed #999;padding-bottom: 8px;padding-top: 16px;font-size: 14px;width: 100%;box-sizing: content-box;}
+.ranking_wrap li span{vertical-align: top;line-height: 44px;display: inline-block;}
+.ranking_wrap li .user_name{width: 70px;}
+.ranking_wrap li:nth-child(1) .rank{background: url(../img/p1_first.png) center center no-repeat;-webkit-background-size: 80%;background-size: 80%;}
+.ranking_wrap li:nth-child(2) .rank{background: url(../img/p1_second.png) center center no-repeat;-webkit-background-size: 80%;background-size: 80%;}
+.ranking_wrap li:nth-child(3) .rank{background: url(../img/p1_third.png) center center no-repeat;-webkit-background-size: 80%;background-size: 80%;}
+.point{float: right;}
+/* 排行榜-----------------------end*/
+
+/* 结束-----------------------start */
+.ranking{position: absolute;left: 7.18%;bottom: 4.866%;width: 20%;}
+.activity_rule{position: absolute;left: 28.59%;bottom: 4.778%;width: 20.3125%;}
+.prize{position: absolute;left: 50.46875%;bottom: 4.778%;width: 20.3125%;}
+.shiyong{position: absolute;left: 72.5%;bottom: 4.778%;width: 20.625%;}
+#p3{position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: none;background: url(../img/p3_bg.jpg);background-size: 100% 100%;overflow: hidden;z-index: 2;}
+#result_num{text-align: center;color: white;font-size: 50px;position: absolute;width: 100%;top: 23%;}
+#result_txt{position: absolute;left: 0;width: 100%;text-align: center;top: 35%;font-size: 14px;color: white;}
+.result_rank{position: absolute;left: 10%;width: 80%;padding: 3% 0;background: white;border-radius: 10px;text-align: center;top: 40%;font-size: 14px;color: #d21026;}
+.p3_again{position: absolute;left: 15.9%;bottom: 27.11%;width: 27.8%;}
+.p3_share_btn{position: absolute;right: 15.9%;bottom: 27.11%;width: 27.8%;}
+.p3_share{position: absolute;right: 5%;top: 5%;width: 50%;}
+#share{display: none;}
+.p1_btns_wrap{position: absolute;left: 4.6875%;bottom: 2.8415%;width: 90%;}
+.p1_mask{position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.7);z-index: 2;}
+.p3_acquire{position: absolute;top: 13.38%;left: 16.1%;width: 69.68%;}
+
+/*按钮*/
+#activity_rule{display: none;z-index: 3;}
+.float_wrap{position: absolute;left: 13.59375%;top: 19.71%;width: 65.4375%;border: 2px solid #e33145;border-radius: 10px;background: #ffead1;padding: 15px;max-height: 60%;overflow: scroll;}
+#prize{display: none;z-index: 3;}
+#shiyong{display: none;z-index: 3;}
+/* 结束-----------------------end*/

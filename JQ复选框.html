@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input class="all" type="button" value="全选">
+	<input class="fan" type="button" value="反选">
+	<input class="check_all" type="checkbox"><br>
+
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+	<input type="checkbox" class="box"><br>
+</body>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+var $all = $(".all");//全选
+var $fan = $(".fan");//反选
+var $check_all = $(".check_all");//判断是否全选的复选框
+var $checkbox = $(".box");//10个复选框
+
+//点击全选
+$all.on("click",function () {
+	//设置10个复选框打钩
+	$checkbox.prop("checked",true);
+	$check_all.prop("checked",true);
+})
+
+//点击反选
+$fan.on("click",function () {
+	$checkbox.each(function (i) {
+		if ($(this).prop("checked")) {
+			$(this).prop("checked",false)
+		}else{
+			$(this).prop("checked",true)
+		}
+	})	
+	check_allFn();
+})
+
+$checkbox.on("click",function () {
+	check_allFn();
+})
+
+//判断是否全选函数
+function check_allFn() {
+	var bol = true;
+	$checkbox.each(function (i) {
+		if (!$(this).prop("checked")) {
+			bol = false;
+			return true;//break;退出循环
+		}
+	})	
+	if (bol) {
+		$check_all.prop("checked",true);
+	}else{
+		$check_all.prop("checked",false);
+
+	}
+}
+</script>
+</html>

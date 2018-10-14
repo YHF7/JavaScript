@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="images/bird.png" alt="">
+</body>
+
+<script>
+    let img = document.querySelector("img");
+
+    //把代码放在一个对象中
+    var evt = {
+        //window.event和事件参数对象e的兼容
+        getEvent: function (evt) {
+            return window.event || evt;
+        },
+        //可视区域的横坐标的兼容代码
+        getClientX: function (evt) {
+            return this.getEvent(evt).clientX;
+        },
+        //可视区域的纵坐标的兼容代码
+        getClientY: function (evt) {
+            return this.getEvent(evt).clientY;
+        },
+        //页面向左卷曲出去的横坐标
+        getScrollLeft: function () {
+            return window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0;
+        },
+        //页面向上卷曲出去的纵坐标
+        getScrollTop: function () {
+            return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
+        },
+        //相对于页面的横坐标(pageX或者是clientX+scrollLeft)
+        getPageX: function (evt) {
+            return this.getEvent(evt).pageX ? this.getEvent(evt).pageX : this.getClientX(evt) + this.getScrollLeft();
+        },
+        //相对于页面的纵坐标(pageY或者是clientY+scrollTop)
+        getPageY: function (evt) {
+            return this.getEvent(evt).pageY ? this.getEvent(evt).pageY : this.getClientY(evt) + this.getScrollTop();
+        }
+
+
+
+    };
+
+    // // 鼠标移动事件
+    // document.onmousemove = (e) => {
+    //     let a1 = img.width / 2;
+    //     let a2 = img.height / 2;
+    //     // img.style.left = e.clientX - a1 + "px";
+    //     // img.style.top = e.clientY - a2 + "px";
+
+    //     // Ie8
+    //     // img.style.left = window.event.clientX - a1 + "px";
+    //     // img.style.top = window.event.clientY - a2 + "px";
+
+    //     // img.style.left = e.pageX - a1 + "px";
+    //     // img.style.top = e.pageY - a2 + "px";
+
+    //     function getScroll() {
+    //         return {
+    //             left: window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0,
+    //             top: window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0
+    //         }
+    //     }
+    //     //可视区域横坐+向左卷曲出去的横坐标
+    //     img.style.left = window.event.clientX + getScroll().left + "px";
+    //     //可视区域纵坐标+向上卷曲出去的纵坐标
+    //     img.style.top = window.event.clientY + getScroll().top + "px";
+
+    // }
+
+    document.onmousemove = function (e) {
+        img.style.left = evt.getPageX(e) + "px";
+        img.style.top = evt.getPageY(e) + "px";
+    };
+</script>
+
+</html>

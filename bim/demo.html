@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 100%;
+			height: 500px;
+		}
+		.con1{background: red;}
+		.con2{background: blue;}
+		.con3{background: yellow;}
+		.con4{background: green;}
+		p{
+			height: 200px;
+			background: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="con1">1</div>
+	<div class="con2">2</div>
+	<div class="con3">3</div>
+	<div class="con4">4</div>
+	<p></p>
+</body>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+$.extend({
+	scrollTo:function (site,time,callback) {
+		time = time || 500;//移动时间,默认500毫秒
+		// 获取上下滚动条位置兼容写法，start开始位置
+		var start = document.body.scrollTop || document.documentElement.scrollTop;
+		var dis = site - start;
+		var T = Date.now();//获取当前时间
+		requestAnimationFrame(function step() {
+			var p = Math.min(1,(Date.now()-T)/time);//根据时间计算进度比例
+			window.scrollTo(0,(2-p)*p*dis+start);//改变滚动条的位置
+			if (p<1) {//判断还没执行完
+				requestAnimationFrame(step)//执行下一帧
+			}else{
+				callback && callback();
+			}
+		})
+	},
+	mousewheel:function(callback) {
+		//判断是否火狐浏览器
+		if (navigator.userAgent.indexOf("Firefox")>-1) {
+			document.addEventListener("DOMMouseScroll",fn);//火狐滚轮事件
+		}else{
+			document.addEventListener("mousewheel",fn);//非火狐滚轮事件
+		}
+		function fn(e) {
+			var e = e || window.event;
+			//火狐 detail 上-3 下3
+			//非火狐 wheelDelta 上120 下-120
+			// false:下 true:上
+			if (e.detail) {
+				//e.detail<0判断往上还是往下滚动小于0是上
+				callback.call(document,e,e.detail<0);
+			}else{
+				//e.wheelDelta>0判断往上还是往下滚动大于0是上
+				callback.call(document,e,e.wheelDelta>0);		
+			}
+			//阻止默认事件
+			e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+		}
+	}
+})
+
+var arr = [];
+var $con = $("div");
+for (var i = 0; i < $con.length; i++) {
+	arr.push($con.eq(i).offset().top)
+}
+arr.push(document.documentElement.offsetHeight)
+console.log(arr);
+
+var index = 0;
+var move_bol = false;
+$(window).scroll(function() {
+	if (move_bol) {return;}
+	for(var i=0;i<arr.length;i++){
+		if($(window).scrollTop()>=arr[i]){
+			index = i;
+		}
+	}
+})
+$.mousewheel(function(e,bol) {
+	if(move_bol){return;}
+	move_bol = true;
+	if(bol){
+		index--;
+		if(index<0){insex=0;}
+	}else{
+		index++;
+		if(index>arr.length-1){index=arr.length-1;}
+	}
+	// console.log(index);
+
+	$.scrollTo(arr[index],800,function() {
+		move_bol = false;
+	})
+})
+
+</script>
+</html>

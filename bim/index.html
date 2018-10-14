@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+	<!-- 头部-start -->
+	<div class="header">
+		<img class="header_bg" src="img/home/header_bg.jpg" alt="">
+		<div class="logo">
+			<img src="img/logo.png" alt="">
+			<p>BIM 制 作 · BIM 培 训</p>
+		</div>
+		<div class="down">
+			<img src="img/home/down.png" alt="">
+		</div>
+	</div>
+	<!-- 头部-end -->
+
+	<!-- 导航-start -->
+	<div class="nav clear">
+			<div class="nav_logo fl">
+				<img src="img/logo.png" alt="">
+			</div>
+			<ul class="fr">
+				<li class="fl"><a href="###"><span></span>首页</a></li>
+				<li class="fl"><a href="###"><span></span>团队介绍</a></li>
+				<li class="fl"><a href="###"><span></span>BIM项目服务</a></li>
+				<li class="fl"><a href="###"><span></span>BIM培训</a></li>
+				<li class="fl"><a href="###"><span></span>案例介绍</a></li>
+			</ul>
+			<img class="nav_btn" src="img/nav.png" alt="">
+		</div>
+	<!-- 导航-end -->
+
+	<!-- 内容区域-start -->
+	<div class="content_1">
+		<div class="overview clear">
+			<div class="left fl">
+				<h4>协议BIM概述</h4>
+				<span></span>
+				<p>作为写意集团的重要成员，写意BIM专注从事BIM咨询服务及BIM培训工作。自创立以来，技术团队曾参与众多公共建筑、商业、住宅与工业厂等地产开发项目的BIM服务。多专业的技术构成、自身应变、技术及软件开发能力结合三维化信息技术的引用，实现项目前期、中期和后期运维过程信息化，为地产开发商创造更多价值。</p>
+			</div>
+			<div class="right fl">
+				<img src="img/home/overview.jpg" alt="">
+			</div>
+		</div>
+	</div>
+	<!-- 内容区域-end -->
+
+	<!-- 内容区域一end -->
+	<div class="serve_wrap">
+		<div class="serve">
+			<h4>BIM项目服务内容</h4>
+			<span></span>
+			<ul class="clear">
+				<li>
+					<div class="con_wrap">
+						<img src="img/home/1.jpg" alt="">
+						<div class="con">
+							<h5>信息化模型构建</h5>
+							<p>根据设计施工图纸精确的完成三维信息模型的搭建，并在图纸更新过程中维护BIM模型。</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="con_wrap">
+						<img src="img/home/2.jpg" alt="">
+						<div class="con">
+							<h5>信息化模型构建</h5>
+							<p>根据设计施工图纸精确的完成三维信息模型的搭建，并在图纸更新过程中维护BIM模型。</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="con_wrap">
+						<img src="img/home/3.jpg" alt="">
+						<div class="con">
+							<h5>信息化模型构建</h5>
+							<p>根据设计施工图纸精确的完成三维信息模型的搭建，并在图纸更新过程中维护BIM模型。</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="con_wrap">
+						<img src="img/home/4.jpg" alt="">
+						<div class="con">
+							<h5>信息化模型构建</h5>
+							<p>根据设计施工图纸精确的完成三维信息模型的搭建，并在图纸更新过程中维护BIM模型。</p>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+
+			<a class="more" href="###">了解更多></a>
+
+		</div>
+
+	</div>
+	<!-- 内容区域-end -->
+
+</body>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+	$.extend({
+		scrollTo:function (site,time){
+			time = time || 500;
+			var T = Date.now();//获取当前时间
+			var start = document.body.scrollTop||document.
+			documentElement.scrollTop;
+			var dis = site - start;
+			requestAnimationFrame(function step() {
+				var p = Math.min(1, (Date.now() - T) / time);
+				window.scrollTo(0,start+(2-p)*p*dis)
+				if(p < 1){
+				  requestAnimationFrame(step);
+				}
+			})
+		}
+	})
+
+	//点击头部按钮移动到下面内容
+	$(".down").on("click",function() {
+		$.scrollTo($(window).height());
+	})
+
+	//头部全屏设置
+	$(window).resize(function() {
+		$(".header").height($(window).height())
+	})
+	$(".header").height($(window).height())
+</script>
+</html>

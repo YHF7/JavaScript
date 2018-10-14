@@ -1,0 +1,67 @@
+/* 点击字 */
+.top {
+    text-align: center;
+    font-size: 34px;
+    cursor: pointer
+}
+
+/* 背景遮罩层 */
+.bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #000;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    display: none;
+}
+
+/* 登录框 */
+.dl {
+    width: 500px;
+    height: 250px;
+    background-color: #fff;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    z-index: 999;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+.gb {
+    width: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+}
+h3 {
+    cursor: move;
+    font-weight: normal;
+}
+.yh input {
+    display: inline-block;
+    width: 350px;
+    height: 35px;
+    margin: 10px 0;
+}
+.yh .txt {
+    margin-right: 15px;
+}
+.hy{
+    width: 200px;
+    line-height: 35px;
+    border: 1px solid #ccc;
+    margin: 10px auto;
+}

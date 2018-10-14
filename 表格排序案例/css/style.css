@@ -1,0 +1,27 @@
+/*
+ * @Author: yhf 
+ * @Date: 2018-09-12 20:43:23 
+ * @Last Modified by: yhf
+ * @Last Modified time: 2018-09-12 21:53:17
+ */
+/* 初始化页面 */
+* {
+    padding: 0;
+    margin: 0;
+}
+/* 表格 */
+table {
+    position: relative;
+    top: 100px;
+    left: 100px;
+    width: 800px;
+}
+/* 表头 */
+th {
+    height: 50px;
+    cursor: pointer;
+}
+/* 表格 */
+td {
+    text-align: center;
+}

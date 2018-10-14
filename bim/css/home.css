@@ -1,0 +1,71 @@
+body{height: 2500px;}
+/* 头部-----------------------start */
+.header{width: 100%;background: url(../img/home/header_bg.jpg) center bottom no-repeat;background-size: cover;position: relative;}
+.header .header_bg{display: none;}
+.header .logo{width:212px;height: 123px;position: absolute;left:0;right:0;top:0;bottom: 0;margin: auto;}
+.header .logo p{color: #9c9c9c;font-size: 20px;font-style:italic;word-spacing: 3px;padding-top: 20px;}
+.header .logo img{width:100%;}
+.header .down{position: absolute;bottom: 0;width: 100%;text-align: center;padding-bottom: 30px;}
+.header .down img{cursor: pointer;}
+/* 头部--------------------------end*/
+
+/*概述内容----------------------start*/
+.overview{width: 1126px;margin: auto;margin-top: 160px;}
+.overview>div{width: 50%;}
+.overview h4{font-size: 24px;}
+.overview span{display: block;width: 70px;height: 5px;background: #fcc91a;margin: 30px 0 50px;}
+.overview .left{padding-right: 35px;box-sizing: border-box;}
+.overview .right{padding-left: 35px;box-sizing: border-box;}
+.overview .right img{width: 100%;}
+.overview p{color: #787878;margin-bottom: 30px;}
+/*概述内容------------------------end*/
+
+/*服务内容----------------------------start*/
+.serve_wrap{width: 100%;background: #f8f9f9;}
+.serve{width: 1126px;margin: auto;padding-top: 40px;padding-bottom: 30px;}
+.serve h4{font-size: 24px;}
+.serve span{display: block;width: 70px;height: 5px;background: #fcc91a;margin: 30px 0 50px;}
+.serve ul{margin: 0 -7.5px;}
+.serve ul li{box-sizing: border-box;width: 25%;padding: 0 7.5px;float: left;}
+.serve ul li .con_wrap{background: white;height: 415px;}
+.serve ul li img{width: 100%;}
+.serve ul li .con{padding: 30px;}
+.serve ul li .con h5{font-size: 15px;}
+.serve ul li .con p{color: #8e8e8e;}
+.serve .more{width: 202px;height: 44px;border:1px solid black;text-align: center;display: block;line-height: 44px;margin:70px auto 0px;}
+/*服务内容----------------------------end*/
+
+@media screen and (max-width: 1200px){
+	.overview,.serve{width: 940px;}
+}
+
+@media screen and (max-width: 960px){
+	.serve ul li .con{padding: 15px;}
+	.serve ul li .con h5{margin: 15px 0;}
+	.serve ul li .con_wrap{height: 300px;}
+	.overview,.serve{width: 700px;}
+	.overview span{margin: 20px 0 30px;}
+	.header{
+		background-image: none;
+		height: auto !important;
+	}
+	.header .header_bg{
+		width: 100%;
+		display: inline;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.overview,.serve{width: 100%;padding:0 10px;box-sizing: border-box;}
+	.serve ul li{width: 50%;margin-bottom: 20px}
+	.serve ul li .con_wrap{height: auto;width: 250px;margin: auto;}
+	.overview>div{width: 100%;}	
+	.overview .left{padding-right: 0px;}
+	.overview .right{padding-left: 0px;}
+	.header .logo{width: 115px;height: 70px;}
+	.header .logo p{font-size: 12px;word-spacing: 0px;padding-top: 10px;}
+}
+@media screen and (max-width: 560px){
+	.serve ul li{width:100%;}
+	.serve ul li .con_wrap{height: auto;width: 100%;max-width: 300px;margin: auto;}
+}
